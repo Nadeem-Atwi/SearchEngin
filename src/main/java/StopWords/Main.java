@@ -21,8 +21,8 @@ public class Main {
      */
     public static void main(String[] args) {
             
-            ArrayList<String> FinalList=ReadTextFile("D:/netbeans projects/stopwords/StopWords/filename.txt");
-            ArrayList<String> FinalList2=ReadTextFile("D:/netbeans projects/stopwords/StopWords/otherFile.txt");
+            ArrayList<String> FinalList=ReadTextFile("D:/netbeans projects/Engine/StopWords/SearchEngin/filename.txt");
+            ArrayList<String> FinalList2=ReadTextFile("D:/netbeans projects/Engine/StopWords/SearchEngin/otherFile.txt");
 
 
             for(int a =0 ;a<FinalList.size();a++){
