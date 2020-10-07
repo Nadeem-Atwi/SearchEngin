@@ -1,1 +1,1 @@
-basic algorith for a search engine
+basic algorithm for a search engine
