@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package StopWords;
 
 import java.io.File;
@@ -18,64 +14,39 @@ import java.util.Scanner;
 import java.io.FileReader;
 
 
-/**
- *
- * @author ASUS
- */
+
 public class Main {
 
-    /**
-     * @param args the command line arguments
-     */
+  
     public static void main(String[] args) {    
-//                    final File folder = new File("D:/netbeans projects/Engine/StopWords/TargetForStopwords");
-//                    final List<File> fileList = Arrays.asList(folder.listFiles(new FileFilter() {
-//                    public boolean accept(File pathname) {
-//                        return pathname.isFile();
-//                    }
-//                }));
-//                     for(int a=0;a<fileList.size();a++){
-//                         ReFormatFile(fileList.get(a).toString(),"D:/netbeans projects/Engine/StopWords/DestinationForStopWords/"+GetNameOnly(fileList.get(a).getName())+".stp");
-//                     } 
+                   final File folder = new File("path to folder containg the txt files you want to remove stopwwords from");// example "D:/netbeans projects/StopWords/DestinationForStopWords"
+                   final List<File> fileList = Arrays.asList(folder.listFiles(new FileFilter() {
+                   public boolean accept(File pathname) {
+                       return pathname.isFile();
+                   }
+               }));
+                    for(int a=0;a<fileList.size();a++){
+                        ReFormatFile(fileList.get(a).toString(),
+				     "path to FOLDER where you want to write the stopped files "+GetNameOnly(fileList.get(a).getName())+".stp");
+                    } // first we removes stopwords 
 
 
-//                  ReFormatFile("D:/netbeans projects/Engine/StopWords/SearchEngin/test.txt", "ForTest.txt");  //test Statement
+//                  ReFormatFile("D:/netbeans projects/StopWords/SearchEngin/test.txt", "ForTest.txt");  //testing on small file  in the root directory
 
 
 
-                final File folder = new File("D:/netbeans projects/Engine/StopWords/DestinationForStopWords");
+                final File folder = new File("path to folder containg the Stopped files to stem them");
                     final List<File> fileList = Arrays.asList(folder.listFiles(new FileFilter() {
                     public boolean accept(File pathname) {
                         return pathname.isFile();
                     }
                 }));
                 for(int b=0;b<fileList.size();b++){
-                      addFile("D:/netbeans projects/Engine/StopWords/DestinationStemmed/"+GetNameOnly(fileList.get(b).getName())+".sfx",
-                              FileTOArrayList("D:/netbeans projects/Engine/StopWords/DestinationForStopWords/"+GetNameOnly(fileList.get(b).getName())+".stp"));
-                }
+                      addFile("path to FOLDER where you want to write the stemmed files"+GetNameOnly(fileList.get(b).getName())+".sfx",
+                              FileTOArrayList("path to FOLDER where you want to read the Stopped files"+GetNameOnly(fileList.get(b).getName())+".stp"));
+                }//then we stem all documents 
                 
-//                 
-
-//                    char[] a ={ 'p', 'l', 'a', 'y', 'i','n','g' }; 
-//                    char[] b ={ 'u', 'n', 'i', 'v', 'e','r','s','i','t','i','e','s' };  
-//                    char[] c ={'i','-','g','o','i','n','g'}; 
-//                    char[] d ={ 'u', 'n', 'i', 'v', 'e','r','s','i','t','y' }; 
-//
-//                     //stemmer takes char array from string stemms it and return string(using s.toString() method
-//                    Stemmer s = new Stemmer();
-//                    s.add(a);
-//                    s.stem();
-//                    System.out.println(s.toString()+" ");
-//                    s.add(b);
-//                    s.stem();
-//                    System.out.println(s.toString()+" ");
-//                    s.add(c);
-//                    s.stem();
-//                    System.out.println(s.toString()+" ");
-//                    s.add(d);
-//                    s.stem();
-//                    System.out.println(s.toString()+" ");
-                    //universities university 
+                 
                     
     }
         public static String GetNameOnly(String s){
@@ -85,7 +56,7 @@ public class Main {
         public static ArrayList<String> ReadStopWordFile(){ // return stopWord File as Arraylist for comparison with txt file
         ArrayList<String> words = new ArrayList<>();
         try {
-          FileInputStream fis=new FileInputStream("stopwordslist.txt"); 
+          FileInputStream fis=new FileInputStream("stopwordslist.txt");//path for stopwords txt file 
             Scanner Stop = new Scanner(fis);
           while (Stop.hasNextLine()){
               String s = Stop.nextLine().toLowerCase();
@@ -151,7 +122,7 @@ public class Main {
                 e.printStackTrace();
               }
         }
-        public static void ReFormatFile(String path,String FileName){// for conviance takes original file path and new file name to give the formated file 
+        public static void ReFormatFile(String path,String FileName){
              ArrayList<String> FinalList=ReadTextFile(path);
              addFile(FileName, FinalList);
         }
